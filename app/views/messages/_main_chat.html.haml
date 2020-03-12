@@ -1,0 +1,43 @@
+.main_chat
+  .main_header
+    .main_header__left-box
+      .main_header__left-box__current-group
+        test
+      .main_header__left-box__member-list
+        Member：
+        .main_header__left-box__member-list__member
+          saori    
+    .main_header__edit-btn 
+    = link_to "#", class: "main_header__edit-btn" do
+      = "Edit"
+  
+  .messages
+    .message
+      .message__upper
+        .message__upper__name
+          saori
+        .message__upper__date
+          2020/03/12
+      .message__bottom
+        aaa
+    .message
+      .message__upper
+        .message__upper__name
+          saori
+        .message__upper__date
+          2020/03/13
+      .message__bottom
+        bbb
+  
+  .form
+    .form__new
+      .form__new__message
+        .form__new__message__text
+          aaa
+        .form__new__message__image
+          %label{class: "form__new__message__image"}
+            = icon('fas', 'image')
+            %input{type: "file"}
+      .form__new__send
+        Send
+        
