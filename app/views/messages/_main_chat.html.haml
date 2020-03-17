@@ -2,16 +2,18 @@
   .main_header
     .main_header__left-box
       .main_header__left-box__current-group
-        test
+        = @group.name
       .main_header__left-box__member-list
         Member：
         .main_header__left-box__member-list__member
-          saori    
+          - @group.users.each do |user|
+            = user.name
     .main_header__edit-btn 
-    = link_to "#", class: "main_header__edit-btn" do
-      = "Edit"
+      = link_to  edit_group_path(@group.id), class: "main_header__edit-btn" do
+        = "Edit"
   
   .messages
+    = render @messages
     .message
       .message__upper
         .message__upper__name
@@ -31,13 +33,11 @@
   
   .form
     .form__new
-      .form__new__message
-        .form__new__message__text
-          aaa
-        .form__new__message__image
-          %label{class: "form__new__message__image"}
-            = icon('fas', 'image')
-            %input{type: "file"}
-      .form__new__send
-        Send
-        
+      = form_for [@group, @message] do |f|
+        .form__new__message
+          = f.text_field :content, class: 'form__new__message__text', placeholder: 'type a message'
+          .form__new__message__image
+            = f.label :image, class: 'form__new__message__image' do
+              = icon('fas', 'image', class: 'icon')
+              = f.file_field :image, class: 'hidden'
+          = f.submit 'Send', class: 'form__new__send'
